@@ -23,5 +23,5 @@ arr = [ 2, 1, 10, 23 ]
 bubbleSort(arr)
 
 print("Sorted array is:")
-for i in range(len(arr)):
-	print("%d" % arr[i])
+for element in arr:
+    print(element)
