@@ -1,28 +1,25 @@
+from collections import deque
+
 graph = {
-  '5' : ['3','7'],
-  '3' : ['2', '4'],
-  '7' : ['8'],
-  '2' : [],
-  '4' : ['8'],
-  '8' : []
+  '5': ['3', '7'],
+  '3': ['2', '4'],
+  '7': ['8'],
+  '2': [],
+  '4': ['8'],
+  '8': []
 }
 
-visited = [] # List for visited nodes.
-queue = []     #Initialize a queue
+def bfs(graph, start_node):
+    visited = set()
+    queue = deque([start_node])
 
-def bfs(visited, graph, node): #function for BFS
-  visited.append(node)
-  queue.append(node)
-
-  while queue:          # Creating loop to visit each node
-    m = queue.pop(0) 
-    print (m, end = " ") 
-
-    for neighbour in graph[m]:
-      if neighbour not in visited:
-        visited.append(neighbour)
-        queue.append(neighbour)
+    while queue:
+        node = queue.popleft()
+        if node not in visited:
+            print(node, end=" ")
+            visited.add(node)
+            queue.extend(neighbour for neighbour in graph[node] if neighbour not in visited)
 
 # Driver Code
 print("Following is the Breadth-First Search")
-bfs(visited, graph, '5')    # function calling
+bfs(graph, '5')
